@@ -18,3 +18,4 @@ passport.use(new BasicStrategy(
 ));
 
 exports.isAuthenticated = passport.authenticate('basic', { session : false });
+
