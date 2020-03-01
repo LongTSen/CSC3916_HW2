@@ -9,7 +9,7 @@ let jwt = require('jsonwebtoken');
 var cors = require('cors');
 // let url = require('url');
 
-require('dotenv').config();
+// require('dotenv').config();
 
 let app = express();
 app.use(cors());
@@ -88,7 +88,7 @@ router.route('/signup')
 
 router.route('/signin')
     .post((req, res) => {
-        console.log(process.env.UNIQUE_KEY);
+        console.log(process.env.SECRET_KEY);
         let user = db.findOne(req.body.username);
 
         if (!user) {
@@ -101,7 +101,7 @@ router.route('/signin')
             // check if password matches
             if (req.body.password == user.password) {
                 let userToken = {id: user.id, username: user.username};
-                let token = jwt.sign(userToken, process.env.UNIQUE_KEY);
+                let token = jwt.sign(userToken, process.env.SECRET_KEY);
                 res.json({success: true, token: 'JWT ' + token});
             } else {
                 res.status(403).send(
@@ -129,7 +129,7 @@ router.route('/movies')
         res.query = req.query;
         res = res.json(
             {
-                env: process.env.UNIQUE_KEY,
+                env: process.env.SECRET_KEY,
                 message: 'get movies',
                 query: req.query,
                 headers: req.headers
@@ -143,7 +143,7 @@ router.route('/movies')
         res.query = req.query;
         res = res.json(
             {
-                env: process.env.UNIQUE_KEY,
+                env: process.env.SECRET_KEY,
                 message: 'movie Saved',
                 query: req.query,
                 headers: req.headers
@@ -159,7 +159,7 @@ router.route('/movies')
         res.query = req.query;
         res = res.json(
             {
-                env: process.env.UNIQUE_KEY,
+                env: process.env.SECRET_KEY,
                 message: 'movie updated',
                 query: req.query,
                 headers: req.headers
@@ -174,7 +174,7 @@ router.route('/movies')
         res = res.json(
             {
                 status: 200,
-                env: process.env.UNIQUE_KEY,
+                env: process.env.SECRET_KEY,
                 message: 'Movie Deleted',
                 query: req.query,
                 headers: req.headers
