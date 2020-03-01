@@ -127,6 +127,7 @@ router.route('/movies')
         res.query = req.query;
         res = res.json(
             {
+                status: 200,
                 env: process.env.SECRET_KEY,
                 message: 'get movies',
                 query: req.query,
@@ -141,6 +142,7 @@ router.route('/movies')
         res.query = req.query;
         res = res.json(
             {
+                status: 200,
                 env: process.env.SECRET_KEY,
                 message: 'movie Saved',
                 query: req.query,
@@ -157,6 +159,7 @@ router.route('/movies')
         res.query = req.query;
         res = res.json(
             {
+                status: 200,
                 env: process.env.SECRET_KEY,
                 message: 'movie updated',
                 query: req.query,
@@ -168,6 +171,7 @@ router.route('/movies')
     .delete(authController.isAuthenticated, (req, res) => {
 
         res.set(req.headers);
+        res.status(200);
         res.query = req.query;
         res = res.json(
             {
